@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impactos en ALC de las hostilidades en Irán — Resumen Ejecutivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --ink:#16232e;
+    --paper:#eef1ec;
+    --paper-2:#e2e6dd;
+    --card:#f9faf7;
+    --burgundy:#8c2f39;
+    --burgundy-dark:#5f1f27;
+    --amber:#b9772e;
+    --teal:#2f6f62;
+    --line:#c9cfc3;
+    --muted:#5c6b63;
+    --red-heat-1:#f7d9d4; --red-heat-2:#eeb3aa; --red-heat-3:#e08b7d; --red-heat-4:#c85f50; --red-heat-5:#8c2f39;
+    --green-heat-1:#dceee0; --green-heat-2:#b8dcc3; --green-heat-3:#8ec5a0; --green-heat-4:#5da377; --green-heat-5:#2f6f62;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  h1,h2,h3,h4{font-family:'Source Serif 4', serif; margin:0; letter-spacing:-0.01em;}
+  a{color:var(--burgundy-dark);}
+
+  /* ===== TOP BAR / MASTHEAD ===== */
+  .masthead{
+    background:var(--ink);
+    color:#eef1ec;
+    padding:14px 6vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border-bottom:3px solid var(--burgundy);
+  }
+  .masthead span.dim{color:#9aa79f;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:64px 6vw 48px;
+    max-width:1200px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:48px;
+    align-items:end;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--burgundy);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before{content:"";width:28px;height:2px;background:var(--burgundy);display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.1rem, 4vw, 3.4rem);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.05;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--burgundy-dark);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:17px;
+    color:#33413a;
+    max-width:56ch;
+  }
+  .hero-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--muted);
+    border-left:2px solid var(--line);
+    padding-left:18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  /* ===== KEY STAT STRIP ===== */
+  .stat-strip{
+    background:var(--ink);
+    color:#eef1ec;
+    padding:0;
+    overflow:hidden;
+  }
+  .stat-strip-inner{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .stat{
+    padding:26px 20px;
+    border-left:1px solid rgba(255,255,255,0.12);
+    text-align:left;
+  }
+  .stat:first-child{border-left:none;}
+  .stat .num{
+    font-family:'Source Serif 4', serif;
+    font-size:2.1rem;
+    font-weight:700;
+    color:#f2c9a8;
+  }
+  .stat .num.red{color:#e39a92;}
+  .stat .num.green{color:#94cdb2;}
+  .stat .lbl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:#a9b6ae;
+    margin-top:6px;
+  }
+
+  /* ===== SECTION FRAME ===== */
+  section{
+    max-width:1200px;
+    margin:0 auto;
+    padding:64px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  section.bg-alt{background:var(--paper-2);}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:24px;
+    margin-bottom:34px;
+    flex-wrap:wrap;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--burgundy);
+    letter-spacing:0.1em;
+  }
+  .section-head h2{
+    font-size:clamp(1.5rem,2.6vw,2.05rem);
+    font-weight:600;
+    max-width:70ch;
+  }
+  .section-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    max-width:60ch;
+  }
+
+  .grid-2{display:grid; grid-template-columns:1.1fr 0.9fr; gap:36px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 24px;
+  }
+  .card h3{font-size:1.05rem; font-weight:600; margin-bottom:10px;}
+  .card p{font-size:14px; color:#3c4a43; margin:0;}
+
+  .chart-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:20px 22px 8px;
+  }
+  .chart-card .chart-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .chart-wrap{position:relative; width:100%;}
+
+  .insight-box{
+    border-left:3px solid var(--burgundy);
+    background:#fbf3f0;
+    padding:14px 18px;
+    font-size:14px;
+    margin-top:18px;
+  }
+  .insight-box b{color:var(--burgundy-dark);}
+
+  /* ===== NETWORK / SIGNATURE DIAGRAM ===== */
+  .network{
+    display:grid;
+    grid-template-columns:220px 1fr 220px;
+    align-items:center;
+    gap:0;
+    margin:20px 0 10px;
+  }
+  .network-source{
+    background:var(--burgundy-dark);
+    color:#f6e8e4;
+    padding:26px 18px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    position:relative;
+    z-index:2;
+  }
+  .network-source .big{font-family:'Source Serif 4',serif; font-size:1.3rem; display:block; margin-bottom:4px; letter-spacing:0;}
+  .network-channels{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding:0 18px;
+  }
+  .channel-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    align-items:center;
+    gap:10px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--amber);
+    padding:9px 12px;
+    font-size:13px;
+  }
+  .channel-row.pos{border-left-color:var(--teal);}
+  .channel-row .chn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+  }
+  .network-sink{
+    background:var(--ink);
+    color:#eef1ec;
+    padding:26px 18px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .network-sink .big{font-family:'Source Serif 4',serif; font-size:1.3rem; display:block; margin-bottom:4px; letter-spacing:0;}
+
+  /* ===== HEATMAP TABLE ===== */
+  table.heat{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+  }
+  table.heat th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--muted);
+    padding:8px 10px;
+    border-bottom:2px solid var(--ink);
+  }
+  table.heat td{
+    padding:7px 10px;
+    border-bottom:1px solid var(--line);
+  }
+  table.heat td.country{font-weight:600;}
+  .heat-cell{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    border-radius:2px;
+  }
+
+  .legend-scale{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    margin-top:14px;
+  }
+  .legend-scale .sw{width:16px; height:12px; display:inline-block;}
+
+  /* ===== SCENARIO CARDS ===== */
+  .scenario-track{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:10px;
+  }
+  .scenario-card{
+    border:1px solid var(--line);
+    background:var(--card);
+    padding:18px;
+    position:relative;
+  }
+  .scenario-card .sc-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--burgundy);
+  }
+  .scenario-card h4{font-size:15px; margin:8px 0 8px; font-weight:600;}
+  .scenario-card p{font-size:12.8px; color:var(--muted); margin:0;}
+  .scenario-card.severe{border-color:var(--burgundy); background:#fbf3f0;}
+
+  /* ===== COUNTRY CASE STUDIES ===== */
+  .case-card{
+    border:1px solid var(--line);
+    background:var(--card);
+  }
+  .case-head{
+    padding:16px 20px;
+    background:var(--ink);
+    color:#eef1ec;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-head h3{color:#eef1ec; font-size:1.1rem;}
+  .case-body{padding:18px 20px;}
+  .case-metric{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:13.5px;
+  }
+  .case-metric:last-child{border-bottom:none;}
+  .case-metric .v{font-family:'IBM Plex Mono', monospace; font-weight:600;}
+  .v.up{color:var(--burgundy-dark);}
+  .v.down{color:var(--teal);}
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:40px 6vw 60px;
+    max-width:1200px;
+    margin:0 auto;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  footer .src{margin-top:10px; line-height:1.7;}
+
+  @media(max-width:880px){
+    .hero{grid-template-columns:1fr;}
+    .grid-2, .grid-3, .grid-4{grid-template-columns:1fr;}
+    .stat-strip-inner{grid-template-columns:repeat(2,1fr);}
+    .stat{border-top:1px solid rgba(255,255,255,0.12); border-left:none;}
+    .network{grid-template-columns:1fr;}
+    .scenario-track{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <span>CEPAL · Informe Especial N° 2 — Julio 2026</span>
+  <span class="dim">Resumen analítico · elaborado para perfil económico-financiero</span>
+</div>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Choque geopolítico → transmisión macro-financiera</div>
+    <h1>El estrecho que <em>encareció</em> al mundo, visto desde América Latina</h1>
+    <p class="lede">
+      Las hostilidades Estados Unidos–Israel / Irán, iniciadas el 28 de febrero de 2026, bloquearon el
+      estrecho de Ormuz —vía de más del 30% del petróleo crudo marítimo mundial— y desencadenaron un shock
+      de precios de energía, fertilizantes e insumos industriales. Este resumen traduce el Informe Especial
+      de la CEPAL N°2 en los datos, canales de transmisión y posiciones país que interesan a un analista
+      de riesgo, portafolio o política pública en la región.
+    </p>
+  </div>
+  <div class="hero-meta">
+    <span>FUENTE · CEPAL, sobre base de FMI, Banco Mundial, IEA, IMF PortWatch, UN Comtrade, Bloomberg</span>
+    <span>PERIODO · información disponible hasta mayo de 2026</span>
+    <span>ALCANCE · impactos mundiales + 24-32 países de ALC + 4 casos de estudio</span>
+  </div>
+</div>
+
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat"><div class="num red">120 US$</div><div class="lbl">Brent, prom. abril 2026 (+70% vs feb.)</div></div>
+    <div class="stat"><div class="num red">4,4%</div><div class="lbl">Inflación mundial 2026 (revisión FMI, +0,6pp)</div></div>
+    <div class="stat"><div class="num green">3,1%</div><div class="lbl">Crecimiento mundial 2026 (vs 3,3% pre-choque)</div></div>
+    <div class="stat"><div class="num red">2,2%</div><div class="lbl">Crecimiento ALC 2026 (CEPAL, revisado a la baja)</div></div>
+    <div class="stat"><div class="num red">45 M</div><div class="lbl">Personas adicionales en inseguridad alimentaria aguda</div></div>
+  </div>
+</div>
+
+<!-- ============ SECCIÓN 1 ============ -->
+<section id="ormuz">
+  <div class="section-head">
+    <div>
+      <div class="section-num">01 · EL CUELLO DE BOTELLA</div>
+      <h2>Ormuz concentra una porción crítica del comercio marítimo mundial</h2>
+      <p class="section-sub">Aunque el petróleo domina el titular, el azufre —insumo del ácido sulfúrico— es proporcionalmente el más expuesto: 50% de su comercio marítimo mundial pasa por el estrecho.</p>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Gráfico 1 · % del comercio marítimo mundial que transita por Ormuz</div>
+      <div class="chart-wrap" style="height:320px;"><canvas id="chartOrmuz"></canvas></div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>Colapso operativo, no solo de precio</h3>
+        <p>El tránsito diario (Gráfico 2 del informe) cayó de un promedio ~3,4 millones de toneladas/día
+        antes del 28 de febrero a niveles residuales sostenidos hasta mediados de mayo — no hubo
+        recuperación gradual, fue un corte abrupto y persistente.</p>
+      </div>
+      <div class="insight-box">
+        <b>Lectura para el analista:</b> la disrupción generó la "mayor perturbación de oferta petrolera
+        de la historia" según la AIE. Las navieras redirigieron el tránsito Asia–Europa hacia el Cabo de
+        Buena Esperanza (+2 semanas de tránsito), y los fletes en esa ruta subieron de ~US$2.500 a
+        ~US$3.000 por contenedor FEU antes de moderarse a US$2.700 en mayo.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 2 ============ -->
+<section class="bg-alt" id="precios">
+  <div class="section-head">
+    <div>
+      <div class="section-num">02 · CHOQUE DE PRECIOS</div>
+      <h2>La urea, no el petróleo, registra la mayor variación relativa</h2>
+      <p class="section-sub">Variación de precios, abril 2026 vs. febrero 2026 (%). El aumento de fertilizantes (+44%, con urea +82%) es clave para el canal de seguridad alimentaria.</p>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Gráfico 3B · Variación de precios de bienes básicos (abr. vs. feb. 2026)</div>
+      <div class="chart-wrap" style="height:380px;"><canvas id="chartPrecios"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Gráfico 4 y 5 · Proyecciones FMI: inflación y crecimiento mundial 2026</div>
+      <div class="chart-wrap" style="height:380px;"><canvas id="chartInflaCrec"></canvas></div>
+      <div class="insight-box">
+        En el escenario severo del FMI, la inflación mundial podría llegar a <b>5,8%</b> y el crecimiento
+        caer a <b>2,0%</b> — una combinación estanflacionaria que endurecería aún más las condiciones
+        financieras globales.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 3 — DIAGRAMA DE TRANSMISIÓN (elemento firma) ============ -->
+<section id="canales">
+  <div class="section-head">
+    <div>
+      <div class="section-num">03 · MAPA DE TRANSMISIÓN</div>
+      <h2>Seis canales conectan el shock de Ormuz con la macroeconomía de ALC</h2>
+      <p class="section-sub">La región tiene baja exposición comercial directa al Golfo Pérsico (1,4% de sus exportaciones), pero queda expuesta vía precios, financiamiento y demanda mundial.</p>
+    </div>
+  </div>
+
+  <div class="network">
+    <div class="network-source">
+      <span class="big">Ormuz</span>
+      Disrupción física + choque de precios de energía
+    </div>
+    <div class="network-channels">
+      <div class="channel-row"><span class="chn">A</span><span>Comercial — balanza energética: ganadores exportadores netos, perdedores importadores netos</span></div>
+      <div class="channel-row"><span class="chn">B</span><span>Fiscal — más ingresos por hidrocarburos vs. mayor gasto en subsidios/estabilización</span></div>
+      <div class="channel-row"><span class="chn">C</span><span>Precios — traspaso directo (combustibles) e indirecto (transporte, fertilizantes, alimentos)</span></div>
+      <div class="channel-row"><span class="chn">D</span><span>Enfriamiento mundial — menor demanda externa de EE.UU., China y UE</span></div>
+      <div class="channel-row"><span class="chn">E</span><span>Financiero — aversión al riesgo, dólar fuerte, presión sobre monedas emergentes</span></div>
+      <div class="channel-row"><span class="chn">F</span><span>Monetario — bancos centrales posponen o frenan el ciclo de recortes de tasas</span></div>
+    </div>
+    <div class="network-sink">
+      <span class="big">ALC</span>
+      Crecimiento revisado de 2,3% a 2,2% para 2026
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:28px;">
+    <div class="card">
+      <h3>Por qué ALC está relativamente protegida</h3>
+      <p>Baja exposición logística a Ormuz (1,4% export / 0,7% import), matriz eléctrica 64% renovable
+      (vs. 33% mundial) y algunos grandes exportadores netos de hidrocarburos (Guyana, Venezuela, Trinidad
+      y Tabago, Colombia).</p>
+    </div>
+    <div class="card">
+      <h3>Por qué la protección es desigual</h3>
+      <p>La mayoría de países de la región —incluso exportadores de crudo como México— carecen de
+      capacidad de refinación suficiente, por lo que son importadores netos de derivados (gasolina, diésel).
+      Esto atenúa la ganancia de los exportadores y agrava el costo de los importadores.</p>
+    </div>
+    <div class="card">
+      <h3>El canal financiero, el más volátil</h3>
+      <p>En marzo 2026 el índice de riesgo geopolítico superó los niveles de 2022 (invasión a Ucrania);
+      el VIX y el VXEEM repuntaron con fuerza y varias monedas de la región se depreciaron: Chile -6,1%,
+      Uruguay -5,4%, México -4,1%, Perú -3,7% frente al dólar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 4 — HEATMAP BALANZA COMERCIAL ============ -->
+<section class="bg-alt" id="balanza">
+  <div class="section-head">
+    <div>
+      <div class="section-num">04 · GANADORES Y PERDEDORES</div>
+      <h2>Impacto del choque energético en la balanza comercial, por país</h2>
+      <p class="section-sub">Puntos porcentuales del PIB. Escenario 1 (Brent US$86, +25% vs. 2025) — CEPAL, Simulador de Impactos Energéticos.</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Gráfico 6 (adaptado) · Balanza comercial energética, top exportadores e importadores netos</div>
+    <div class="chart-wrap" style="height:460px;"><canvas id="chartBalanza"></canvas></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:26px; align-items:start;">
+    <div class="chart-card">
+      <div class="chart-title">Cuadro A2.1 (extracto) · Impacto total por componente — escenario 1 (pp del PIB)</div>
+      <table class="heat">
+        <thead><tr><th>País</th><th>Δ crudo</th><th>Δ derivados</th><th>Δ gas</th><th>Δ total</th></tr></thead>
+        <tbody id="heatBody"></tbody>
+      </table>
+      <div class="legend-scale">
+        <span>Fuerte deterioro</span>
+        <span class="sw" style="background:var(--red-heat-5);"></span>
+        <span class="sw" style="background:var(--red-heat-3);"></span>
+        <span class="sw" style="background:#fdf6f4;"></span>
+        <span class="sw" style="background:var(--green-heat-3);"></span>
+        <span class="sw" style="background:var(--green-heat-5);"></span>
+        <span>Fuerte mejora</span>
+      </div>
+    </div>
+    <div>
+      <div class="insight-box">
+        <b>Guyana es un outlier estadístico:</b> +17 pp del PIB por el tamaño relativo de su sector
+        petrolero — distorsiona cualquier promedio regional y debe tratarse por separado en el análisis.
+      </div>
+      <div class="insight-box">
+        <b>Perú y Chile</b> aparecen como importadores netos perjudicados en el canal energético puro,
+        pero ambos compensan parcialmente por el alza del cobre y el oro (canal de metales, no
+        modelado en el simulador base).
+      </div>
+      <div class="insight-box">
+        <b>Centroamérica, Haití y Rep. Dominicana</b> son el bloque más vulnerable: -0,9 pp del PIB en
+        el escenario 1 y hasta -2,4 pp en el escenario 3 (Brent US$115).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 5 — INFLACIÓN Y FERTILIZANTES ============ -->
+<section id="inflacion">
+  <div class="section-head">
+    <div>
+      <div class="section-num">05 · TRASPASO A PRECIOS INTERNOS</div>
+      <h2>Impacto directo estimado en el IPC 2026, por país y escenario de precios</h2>
+      <p class="section-sub">Puntos porcentuales adicionales de inflación anual, asumiendo 60% de traspaso de precios internacionales de combustibles (metodología Goldman Sachs / CEPAL).</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Cuadro 5 (adaptado) · Impacto directo en IPC 2026, tres escenarios de precios energéticos</div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="chartIpc"></canvas></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:26px;">
+    <div class="card">
+      <h3>Fertilizantes: la vulnerabilidad silenciosa</h3>
+      <p>Con excepción de Trinidad y Tabago y Bolivia, casi toda ALC es importadora neta de fertilizantes.
+      Paraguay presenta el déficit más severo (-1,5% del PIB), y Brasil —pese a ser potencia agroexportadora—
+      importa cerca del 85% de los fertilizantes que consume, lo que expone su cosecha de soja al shock
+      de precios del gas natural (insumo de la urea).</p>
+    </div>
+    <div class="card">
+      <h3>Seguridad alimentaria: efecto rezagado 6–12 meses</h3>
+      <p>Según la FAO, el mayor impacto en rendimientos y precios de alimentos se materializa entre 6 y
+      12 meses después del choque inicial de fertilizantes — el canal aún no ha mostrado su efecto pleno
+      al cierre de este informe (mayo 2026). El costo de una dieta saludable en el Caribe ya es 30% superior
+      al promedio mundial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 6 — ESCENARIOS ============ -->
+<section class="bg-alt" id="escenarios">
+  <div class="section-head">
+    <div>
+      <div class="section-num">06 · ESCENARIOS FUTUROS</div>
+      <h2>Cuatro trayectorias posibles (marco de Nouriel Roubini, mayo 2026)</h2>
+      <p class="section-sub">La situación a mediados de mayo se ubica en el Escenario 2: alto el fuego con negociaciones prolongadas y navegación aún muy reducida.</p>
+    </div>
+  </div>
+
+  <div class="scenario-track">
+    <div class="scenario-card">
+      <div class="sc-num">ESCENARIO 1</div>
+      <h4>Resolución rápida</h4>
+      <p>Alto el fuego de abril deriva en negociaciones exitosas; mejora pronta de la navegación en Ormuz. Alineado con el escenario de referencia del FMI (crecimiento 3,1%, inflación 4,4%).</p>
+    </div>
+    <div class="scenario-card">
+      <div class="sc-num">ESCENARIO 2 · ACTUAL</div>
+      <h4>Estancamiento negociador</h4>
+      <p>Alto el fuego se sostiene, pero negociaciones se prolongan meses; navegación sigue muy reducida. Alineado con escenario adverso del FMI (crecimiento 2,6%, inflación 5,4%).</p>
+    </div>
+    <div class="scenario-card severe">
+      <div class="sc-num">ESCENARIO 3</div>
+      <h4>Escalada con daño a infraestructura</h4>
+      <p>Daño significativo a instalaciones energéticas del Golfo; navegación limitada persiste. Alza muy significativa de precios del petróleo.</p>
+    </div>
+    <div class="scenario-card severe">
+      <div class="sc-num">ESCENARIO 4</div>
+      <h4>Escalada severa y permanente</h4>
+      <p>Versión más severa del daño a infraestructura. Alineado con escenario severo del FMI (crecimiento mundial ≤2,0%, inflación 5,8%).</p>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:22px;">
+    <b>Punto clave para la gestión de riesgo:</b> incluso en el escenario más favorable, la revista
+    <i>The Economist</i> y la propia CEPAL anticipan que la crisis petrolera "empeorará antes de
+    desaparecer": los inventarios en tránsito ya se usaron intensivamente, los 32 países de la AIE
+    liberaron 400 millones de barriles de reservas estratégicas (un tercio del total), y la reparación de
+    infraestructura dañada tomará meses o años. El desescalamiento militar no implica normalización
+    inmediata de oferta.
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 7 — CASOS DE ESTUDIO ============ -->
+<section id="casos">
+  <div class="section-head">
+    <div>
+      <div class="section-num">07 · CASOS DE ESTUDIO</div>
+      <h2>Cuatro respuestas de política, cuatro posiciones de partida distintas</h2>
+      <p class="section-sub">Argentina, Brasil y México muestran el patrón mixto de exportador-importador simultáneo; Barbados ilustra el caso puro de importador neto y economía turística.</p>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="case-card">
+      <div class="case-head"><h3>Argentina</h3><span class="mono" style="font-size:11px;color:#9aa79f;">AR</span></div>
+      <div class="case-body">
+        <div class="case-metric"><span>Superávit comercial extra est.</span><span class="v down">+US$6.600 M</span></div>
+        <div class="case-metric"><span>Inflación mensual mar. 2026</span><span class="v up">3,4%</span></div>
+        <div class="case-metric"><span>Prima de riesgo país</span><span class="v up">&gt;500 pb</span></div>
+        <div class="case-metric"><span>Medida clave</span><span class="v" style="font-size:12px;">Estabilización YPF 45 días</span></div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-head"><h3>Brasil</h3><span class="mono" style="font-size:11px;color:#9aa79f;">BR</span></div>
+      <div class="case-body">
+        <div class="case-metric"><span>Superávit comercial abr. 2026</span><span class="v down">US$10.500 M FOB</span></div>
+        <div class="case-metric"><span>Expectativa inflación 2026</span><span class="v up">5,04%</span></div>
+        <div class="case-metric"><span>Dependencia fertiliz. import.</span><span class="v up">~85%</span></div>
+        <div class="case-metric"><span>Medida clave</span><span class="v" style="font-size:12px;">Exención PIS/COFINS diésel</span></div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-head"><h3>México</h3><span class="mono" style="font-size:11px;color:#9aa79f;">MX</span></div>
+      <div class="case-body">
+        <div class="case-metric"><span>Inflación interanual abr. 2026</span><span class="v up">4,45%</span></div>
+        <div class="case-metric"><span>Dependencia import. gasolina</span><span class="v up">~70%</span></div>
+        <div class="case-metric"><span>Perspectiva Moody's</span><span class="v up">Baa2→Baa3 (negativa)</span></div>
+        <div class="case-metric"><span>Medida clave</span><span class="v" style="font-size:12px;">Ajustes semanales IEPS + PACIC</span></div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-head"><h3>Barbados</h3><span class="mono" style="font-size:11px;color:#9aa79f;">BB</span></div>
+      <div class="case-body">
+        <div class="case-metric"><span>Déficit comercial de bienes est.</span><span class="v up">14,2% → &gt;16,0% PIB</span></div>
+        <div class="case-metric"><span>Ajuste tarifa eléctrica (comb.)</span><span class="v up">+24% en un mes</span></div>
+        <div class="case-metric"><span>Acuerdo FMI stand-by</span><span class="v down">US$260 M / 36 meses</span></div>
+        <div class="case-metric"><span>Riesgo transversal</span><span class="v" style="font-size:12px;">Turismo + tasas Fed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN 8 — CONCLUSIONES ============ -->
+<section class="bg-alt" id="conclusiones">
+  <div class="section-head">
+    <div>
+      <div class="section-num">08 · SÍNTESIS PARA EL ANÁLISIS</div>
+      <h2>Cinco implicaciones para el seguimiento macro-financiero de ALC</h2>
+    </div>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <h3>1 · Divergencia intra-regional</h3>
+      <p>El "en promedio" regional (+0,05 a +0,2 pp del PIB) esconde una dispersión de más de 20 puntos
+      porcentuales entre Guyana y Santa Lucía. Cualquier tesis de inversión regional debe segmentar por
+      posición neta de hidrocarburos y capacidad de refinación.</p>
+    </div>
+    <div class="card">
+      <h3>2 · El canal financiero domina en el corto plazo</h3>
+      <p>Antes de que el canal comercial o fiscal se materialice en los datos duros, el canal financiero
+      (aversión al riesgo, tasas del Tesoro, depreciación cambiaria) ya se movió en marzo 2026 —es la
+      variable de reacción más rápida y la más relevante para posicionamiento táctico.</p>
+    </div>
+    <div class="card">
+      <h3>3 · Política monetaria con margen reducido</h3>
+      <p>Colombia revisó su expectativa de tasa a fin de 2026 de 10,5% a 12%. Brasil, Chile, México y
+      Perú mantienen sesgo a la baja, pero a ritmo más gradual — el ciclo de recortes no se revirtió,
+      pero se hizo más cauteloso en toda la región.</p>
+    </div>
+    <div class="card">
+      <h3>4 · Espacio fiscal asimétrico</h3>
+      <p>Ecuador (17% de ingresos fiscales ligados a hidrocarburos) y Trinidad y Tabago (26%) tienen
+      amortiguador fiscal propio. La mayoría de importadores netos no cuenta con esa contrapartida:
+      el costo de estabilizar precios internos recae enteramente sobre el gasto.</p>
+    </div>
+    <div class="card">
+      <h3>5 · Riesgo de cola persistente</h3>
+      <p>Aun en el escenario más favorable (fin de hostilidades + normalización de Ormuz), los efectos
+      de precios y cadenas de suministro se extenderían "hasta fin de año o quizás más allá" — la
+      resolución militar no es sinónimo de resolución de mercado.</p>
+    </div>
+    <div class="card">
+      <h3>6 · Fertilizantes como indicador adelantado</h3>
+      <p>Con un rezago de 6-12 meses hacia precios de alimentos, el precio de la urea (ya en niveles de
+      2022) es hoy el mejor proxy disponible para anticipar presión inflacionaria de alimentos en 2027,
+      especialmente en Centroamérica y el Caribe.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><b>Fuente base:</b> Comisión Económica para América Latina y el Caribe (CEPAL), <i>Impactos en América Latina y el Caribe de las hostilidades recientes en la República Islámica del Irán y sus alrededores</i>, Informe Especial de la CEPAL N° 2, julio de 2026.</div>
+  <div class="src">Este documento es un resumen analítico de elaboración propia con fines de consulta rápida; para el detalle metodológico completo (Anexo A1), notas al pie y fuentes primarias (FMI, Banco Mundial, IEA, IMF PortWatch, UN Comtrade, Bloomberg, Fitch Ratings, Capital Economics, Goldman Sachs, bancos centrales nacionales), remitirse al informe original de CEPAL.</div>
+</footer>
+
+<script>
+Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
+Chart.defaults.color = "#3c4a43";
+Chart.defaults.font.size = 12;
+
+const burgundy = '#8c2f39';
+const burgundyLight = '#c8827f';
+const amber = '#b9772e';
+const teal = '#2f6f62';
+const ink = '#16232e';
+const grid = 'rgba(22,35,46,0.08)';
+
+// 1. Ormuz flows
+new Chart(document.getElementById('chartOrmuz'), {
+  type: 'bar',
+  data: {
+    labels: ['Azufre','Petróleo crudo','GLP','GNL','Refinados petróleo','Químicos/fertiliz.','Aluminio','Contenedores','Graneles secos'],
+    datasets: [{
+      data: [50,34,29,19,19,13,8,3,2],
+      backgroundColor: burgundy,
+      borderRadius: 2,
+      maxBarThickness: 34
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'% del comercio marítimo mundial'}}},
+    scales:{
+      x:{grid:{color:grid}, title:{display:true,text:'% que transita por Ormuz'}, max:55},
+      y:{grid:{display:false}}
+    }
+  }
+});
+
+// 2. Precios
+new Chart(document.getElementById('chartPrecios'), {
+  type: 'bar',
+  data: {
+    labels: ['Combustible aviación','Diésel','Gasolina','Energía (agreg.)','Gas natural (TTF)','Urea','Fertilizantes (agreg.)','Metales y minerales','Alimentos','No energéticos','Metales preciosos'],
+    datasets: [{
+      data: [74,70,64,58,37,82,44,6,4,6,-6],
+      backgroundColor: (c)=> c.raw < 0 ? teal : (c.raw>60? burgundy : amber),
+      borderRadius: 2,
+      maxBarThickness: 22
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{ x:{grid:{color:grid}, title:{display:true,text:'% var. abr. vs feb. 2026'}}, y:{grid:{display:false}} }
+  }
+});
+
+// 3. Inflación + crecimiento
+new Chart(document.getElementById('chartInflaCrec'), {
+  type:'bar',
+  data:{
+    labels:['Antes del choque','Referencia','Escenario adverso','Escenario severo'],
+    datasets:[
+      {label:'Inflación mundial (%)', data:[3.8,4.4,5.4,5.8], backgroundColor:burgundy, borderRadius:2},
+      {label:'Crecimiento mundial (%)', data:[3.4,3.1,2.6,2.0], backgroundColor:teal, borderRadius:2}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'top', labels:{boxWidth:12}}},
+    scales:{ y:{grid:{color:grid}, title:{display:true,text:'%'}}, x:{grid:{display:false}} }
+  }
+});
+
+// 4. Balanza comercial energética (heatmap-style horizontal bar)
+const balanzaLabels = ['Guyana','Venezuela (R.B.)','Trinidad y Tabago','Colombia','Brasil','Ecuador','Argentina','— ALC (promedio) —','México','Perú','Chile','Rep. Dominicana','Honduras','Nicaragua','Granada','Dominica','Santa Lucía'];
+const balanzaData = [69.5,7.1,6.0,3.9,1.0,1.0,0.6,0.1,-0.7,-1.6,-3.9,-4.3,-7.0,-7.2,-7.6,-8.1,-36.7];
+new Chart(document.getElementById('chartBalanza'), {
+  type:'bar',
+  data:{
+    labels: balanzaLabels,
+    datasets:[{
+      data: balanzaData,
+      backgroundColor: balanzaData.map(v => {
+        if(v>=10) return '#2f6f62';
+        if(v>0) return '#8ec5a0';
+        if(v===0.1) return '#c9cfc3';
+        if(v>-3) return '#eeb3aa';
+        if(v>-8) return '#c85f50';
+        return '#8c2f39';
+      }),
+      borderRadius:2,
+      maxBarThickness:20
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+' pp del PIB'}}},
+    scales:{
+      x:{grid:{color:grid}, title:{display:true,text:'Impacto en balanza comercial, pp del PIB (escenario 1; Guyana en eje truncado)'}},
+      y:{grid:{display:false}, ticks:{font:{size:11}}}
+    }
+  }
+});
+
+// 5. IPC por país y escenario
+const ipcLabels = ['Rep. Dominicana','México','Belice','Honduras','Guatemala','Brasil','Argentina','Paraguay','Chile','Uruguay','Perú','Costa Rica','Bolivia (E.P.)','Colombia','Ecuador'];
+new Chart(document.getElementById('chartIpc'), {
+  type:'bar',
+  data:{
+    labels: ipcLabels,
+    datasets:[
+      {label:'Escenario 1 (Brent US$86)', data:[1.7,1.5,1.4,1.4,1.1,1.1,0.9,0.9,0.9,0.7,0.7,0.6,0.6,0.6,0.3], backgroundColor:'#eeb3aa', borderRadius:2},
+      {label:'Escenario 2 (Brent US$95)', data:[2.6,2.3,2.2,2.1,1.7,1.6,1.4,1.4,1.4,1.1,1.1,1.0,1.0,0.9,0.5], backgroundColor:'#c85f50', borderRadius:2},
+      {label:'Escenario 3 (Brent US$115)', data:[4.6,4.0,3.8,3.7,2.9,2.9,2.5,2.5,2.4,2.0,1.9,1.7,1.7,1.6,0.9], backgroundColor:'#8c2f39', borderRadius:2}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'top', labels:{boxWidth:12}}},
+    scales:{
+      x:{grid:{display:false}, ticks:{font:{size:10.5}}},
+      y:{grid:{color:grid}, title:{display:true,text:'pp adicionales de inflación 2026'}}
+    }
+  }
+});
+
+// Heatmap table body (Cuadro A2.1 extract)
+const rows = [
+  ['Guyana', 18.16, -1.02, -0.01, 17.12],
+  ['Trinidad y Tabago', 1.55, -0.58, 0.54, 1.51],
+  ['Colombia', 0.68, -0.11, -0.06, 0.51],
+  ['Brasil', 0.41, -0.05, -0.05, 0.30],
+  ['Argentina', 0.19, -0.02, -0.01, 0.16],
+  ['México', 0.29, -0.34, 0.00, -0.04],
+  ['Perú', -0.30, -0.19, 0.08, -0.41],
+  ['Chile', -0.38, -0.49, -0.17, -1.03],
+  ['Honduras', 0.00, -1.64, -0.03, -1.67],
+  ['Granada', 0.00, -1.84, -0.00, -1.84]
+];
+function heatColor(v){
+  if(v>10) return {bg:'#2f6f62', fg:'#fff'};
+  if(v>0.5) return {bg:'#b8dcc3', fg:'#16232e'};
+  if(v>=0) return {bg:'#e2eee5', fg:'#16232e'};
+  if(v>-0.5) return {bg:'#f7d9d4', fg:'#16232e'};
+  if(v>-1.2) return {bg:'#e08b7d', fg:'#16232e'};
+  return {bg:'#8c2f39', fg:'#fff'};
+}
+const tbody = document.getElementById('heatBody');
+rows.forEach(r=>{
+  const tr = document.createElement('tr');
+  const tdName = document.createElement('td');
+  tdName.className='country'; tdName.textContent = r[0];
+  tr.appendChild(tdName);
+  for(let i=1;i<5;i++){
+    const td = document.createElement('td');
+    const c = heatColor(r[i]);
+    td.className = 'heat-cell';
+    td.style.background = c.bg;
+    td.style.color = c.fg;
+    td.textContent = (r[i]>0?'+':'') + r[i].toFixed(2);
+    tr.appendChild(td);
+  }
+  tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
