@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Esencial — Clase Interactiva</title>
+<style>
+:root{--green:#217346;--green2:#185c37;--light:#eef7f2;--bg:#f4f7f9;--card:#fff;--text:#1f2937;--muted:#667085;--line:#dbe4ea;--gold:#fff7d6}
+*{box-sizing:border-box} body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;padding:30px 20px;text-align:center}
+header h1{margin:0;font-size:42px} header p{max-width:900px;margin:9px auto 0;font-size:18px;line-height:1.5}
+nav{position:sticky;top:0;z-index:8;background:#fff;border-bottom:1px solid var(--line);padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+nav button{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:999px;font-weight:700;cursor:pointer}
+nav button.active,nav button:hover{background:var(--green);color:#fff;border-color:var(--green)}
+main{max-width:1180px;margin:22px auto;padding:0 18px 60px}
+.module{display:none}.module.active{display:block}
+.hero,.card,.challenge{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:16px;box-shadow:0 5px 16px rgba(0,0,0,.035)}
+.hero h2{font-size:30px;margin:9px 0}.hero p{font-size:17px;color:var(--muted);line-height:1.6}
+.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--light);color:var(--green);font-size:13px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card h3,.challenge h3{margin-top:0}.small{font-size:14px;color:var(--muted);line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px} th,td{border:1px solid var(--line);padding:8px;text-align:left}th{background:var(--light)}
+.challenge{background:var(--gold);border-color:#eadb8e}
+.btn{border:0;background:var(--green);color:#fff;padding:10px 14px;border-radius:9px;font-weight:800;cursor:pointer;margin:5px 5px 0 0}
+.btn.secondary{background:#475569}.answer{display:none;margin-top:12px;padding:12px;background:#f0faf4;border-left:4px solid var(--green);border-radius:8px}
+.formula{font-family:Consolas,monospace;background:#111827;color:#fff;padding:7px 10px;border-radius:7px;display:inline-block}
+.progress{height:8px;background:#dce5e1}.bar{height:8px;background:#34a853;width:20%;transition:.3s}
+.controls{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.insight{font-size:23px;font-weight:800;color:var(--green);line-height:1.35}
+.timer{position:fixed;right:15px;bottom:15px;background:#111827;color:#fff;padding:9px 13px;border-radius:10px;font-variant-numeric:tabular-nums}
+.kpi{font-size:36px;font-weight:900;color:var(--green)}
+</style>
+</head>
+<body>
+<header>
+<h1>Microsoft Excel Esencial</h1>
+<p>Clase interactiva homologada con el archivo de práctica: los mismos datos, nombres, productos y ejercicios que aparecen en cada hoja del Excel.</p>
+</header>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<nav>
+<button class="active" onclick="show(0)">1. Introducción</button>
+<button onclick="show(1)">2. Organización y Formato</button>
+<button onclick="show(2)">3. Fórmulas y Funciones</button>
+<button onclick="show(3)">4. Organización y Análisis</button>
+<button onclick="show(4)">5. Visualización</button>
+</nav>
+<main>
+
+<section class="module active">
+<div class="hero"><span class="tag">HOJA 1 · Introducción a MS Excel</span><h2>Excel: de la planilla de papel a la hoja de cálculo</h2>
+<p>Esta sección replica las ideas centrales de la primera hoja: qué es Excel, su evolución, su tamaño y las tareas de la vida real que permite resolver.</p></div>
+<div class="grid">
+<div class="card"><h3>¿Qué es Excel?</h3><p><strong>Microsoft Excel es un programa de hoja de cálculo.</strong></p>
+<p class="small">En palabras sencillas: una gran tabla digital donde se organizan números, textos y fechas, se hacen cálculos automáticos y se presenta información de manera clara.</p>
+<p class="insight">Excel hace lo que antes hacíamos en una libreta, pero más rápido, ordenado y con menos errores.</p></div>
+<div class="card"><h3>Historia en 4 momentos</h3><p><strong>1985:</strong> primera versión para Macintosh.</p><p><strong>1987:</strong> primera versión para Windows.</p><p><strong>Años 90:</strong> Excel desplaza progresivamente a Lotus 1-2-3.</p><p><strong>Años 2000:</strong> se consolida como estándar de hoja de cálculo.</p></div>
+</div>
+<div class="grid">
+<div class="card"><h3>¿Qué tan grande es una hoja?</h3><p><span class="kpi">1,048,576</span><br>filas</p><p><span class="kpi">16,384</span><br>columnas, de A a XFD</p><p class="small">Más de 17 mil millones de celdas.</p></div>
+<div class="card"><h3>¿Qué podemos hacer?</h3><p>Organizar listas, hacer cálculos, controlar dinero, crear reportes, hacer gráficos, buscar datos y automatizar tareas repetitivas.</p><p class="insight">Ordenar → Calcular → Presentar</p></div>
+</div>
+<div class="challenge"><h3>Pregunta para iniciar la clase</h3><p>¿Qué actividad que hoy haces en papel podría trasladarse a Excel?</p><button class="btn" onclick="toggle('r1')">Mostrar ejemplos</button><div class="answer" id="r1">Control de gastos, lista de clientes, inventarios, pagos, presupuesto familiar, registro de ventas o seguimiento de citas.</div></div>
+<div class="controls"><span></span><button class="btn" onclick="show(1)">Siguiente →</button></div>
+</section>
+
+<section class="module">
+<div class="hero"><span class="tag">HOJA 2 · Organización y Formato</span><h2>Trabajemos con la misma lista de compras del Excel</h2>
+<p>El alumno verá en pantalla exactamente los mismos productos y columnas que tiene en la hoja de práctica.</p></div>
+<div class="card"><h3>Base de ejemplo</h3>
+<table><tr><th>Fecha</th><th>Producto</th><th>Categoría</th><th>Cantidad</th><th>Precio Unit. (S/)</th><th>Total (S/)</th><th>Lugar</th><th>Pago</th></tr>
+<tr><td>06/08/2026</td><td>Arroz</td><td>Alimentos</td><td>2</td><td>4.50</td><td>9.00</td><td>Mercado</td><td>Efectivo</td></tr>
+<tr><td>07/08/2026</td><td>Leche</td><td>Alimentos</td><td>6</td><td>4.20</td><td>25.20</td><td>Plaza Vea</td><td>Tarjeta</td></tr>
+<tr><td>08/08/2026</td><td>Pollo</td><td>Alimentos</td><td>2</td><td>14.50</td><td>29.00</td><td>Mercado</td><td>Efectivo</td></tr>
+<tr><td>09/08/2026</td><td>Pan</td><td>Alimentos</td><td>4</td><td>0.50</td><td>2.00</td><td>Panadería</td><td>Efectivo</td></tr>
+<tr><td>10/08/2026</td><td>Detergente</td><td>Limpieza</td><td>2</td><td>12.90</td><td>25.80</td><td>Tottus</td><td>Tarjeta</td></tr>
+<tr><td>11/08/2026</td><td>Papel higiénico</td><td>Limpieza</td><td>4</td><td>9.50</td><td>38.00</td><td>Plaza Vea</td><td>Tarjeta</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h3>Qué enseñar aquí</h3><p>1. Seleccionar celdas, filas y columnas.</p><p>2. Copiar y pegar.</p><p>3. Dar formato a fecha, moneda y número.</p><p>4. Aplicar bordes y encabezados.</p><p>5. Ajustar ancho de columnas.</p></div>
+<div class="card"><h3>Pregunta al grupo</h3><p>¿Por qué <strong>S/ 4.50</strong> comunica mejor que simplemente <strong>4.5</strong>?</p><p class="small">Introduce la idea de que el formato no cambia el dato, pero mejora su interpretación.</p></div>
+</div>
+<div class="challenge"><h3>Reto práctico</h3><p>En la hoja 2, formatea las columnas <strong>Fecha, Precio Unit. y Total</strong>. Luego resalta los encabezados y autoajusta el ancho de las columnas.</p><button class="btn" onclick="toggle('r2')">Objetivo del reto</button><div class="answer" id="r2">Que el alumno transforme una tabla cruda en una tabla legible y profesional sin cambiar ningún dato.</div></div>
+<div class="controls"><button class="btn secondary" onclick="show(0)">← Anterior</button><button class="btn" onclick="show(2)">Siguiente →</button></div>
+</section>
+
+<section class="module">
+<div class="hero"><span class="tag">HOJA 3 · Fórmulas y Funciones Básicas</span><h2>Usamos los mismos nombres y resultados del Excel</h2>
+<p>La práctica trabaja con Erick, Raul, Juan, Pedro, José y Armando, y con las funciones SUMA, PROMEDIO, MIN, MAX, CONTAR y CONTARA.</p></div>
+<div class="grid">
+<div class="card"><h3>SUMA y PROMEDIO</h3>
+<table><tr><th>Nombre</th><th>Adquisición 1</th><th>Adquisición 2</th></tr>
+<tr><td>Erick</td><td>73</td><td>67</td></tr><tr><td>Raul</td><td>74</td><td>67</td></tr><tr><td>Juan</td><td>68</td><td>74</td></tr><tr><td>Pedro</td><td>76</td><td>78</td></tr><tr><td>José</td><td>67</td><td>76</td></tr><tr><td>Armando</td><td>78</td><td>74</td></tr></table>
+<p><span class="formula">=SUMA(E15:E20)</span> → 436</p><p><span class="formula">=PROMEDIO(F15:F20)</span> → 72.67</p></div>
+<div class="card"><h3>MÍNIMO y MÁXIMO</h3>
+<table><tr><th>Nombre</th><th>Adquisición 1</th><th>Adquisición 2</th></tr>
+<tr><td>Erick</td><td>76</td><td>73</td></tr><tr><td>Raul</td><td>73</td><td>78</td></tr><tr><td>Juan</td><td>67</td><td>73</td></tr><tr><td>Pedro</td><td>76</td><td>72</td></tr><tr><td>José</td><td>76</td><td>72</td></tr><tr><td>Armando</td><td>69</td><td>77</td></tr></table>
+<p><span class="formula">=MIN(I15:I20)</span> → 67</p><p><span class="formula">=MAX(J15:J20)</span> → 78</p></div>
+</div>
+<div class="card"><h3>CONTAR vs. CONTARA</h3><table><tr><th>Nombre</th><th>Asistió</th><th>Asistió</th></tr>
+<tr><td>Erick</td><td></td><td>s</td></tr><tr><td>Raul</td><td>s</td><td>s</td></tr><tr><td>Juan</td><td>s</td><td></td></tr><tr><td>Pedro</td><td></td><td></td></tr><tr><td>José</td><td></td><td>s</td></tr><tr><td>Armando</td><td></td><td></td></tr></table>
+<p><span class="formula">=CONTAR(E28:E33)</span> → 0</p><p><span class="formula">=CONTARA(F28:F33)</span> → 3</p><p class="small">La diferencia se vuelve evidente: CONTAR busca números; CONTARA cuenta celdas no vacías.</p></div>
+<div class="challenge"><h3>Pregunta de participación</h3><p>Si una columna contiene letras “s” para indicar asistencia, ¿usarías CONTAR o CONTARA?</p><button class="btn" onclick="toggle('r3')">Ver respuesta</button><div class="answer" id="r3"><strong>CONTARA</strong>, porque las celdas contienen texto y no números.</div></div>
+<div class="controls"><button class="btn secondary" onclick="show(1)">← Anterior</button><button class="btn" onclick="show(3)">Siguiente →</button></div>
+</section>
+
+<section class="module">
+<div class="hero"><span class="tag">HOJA 4 · Organización y Análisis</span><h2>Analizamos la misma base de personas de 60 años a más</h2>
+<p>La idea es usar ordenar y filtrar para responder preguntas reales a partir de los datos de ingresos y gastos.</p></div>
+<div class="card"><h3>Muestra de la base</h3>
+<table><tr><th>Persona</th><th>Edad</th><th>Ingreso</th><th>Alimentación</th><th>Salud</th><th>Servicios</th><th>Transporte</th><th>Recreación</th><th>Otros</th></tr>
+<tr><td>Rosa</td><td>62</td><td>2800</td><td>620</td><td>280</td><td>310</td><td>180</td><td>150</td><td>120</td></tr>
+<tr><td>Manuel</td><td>67</td><td>3200</td><td>680</td><td>450</td><td>350</td><td>220</td><td>180</td><td>160</td></tr>
+<tr><td>Elena</td><td>71</td><td>2450</td><td>590</td><td>320</td><td>290</td><td>150</td><td>120</td><td>100</td></tr>
+<tr><td>Jorge</td><td>64</td><td>3500</td><td>720</td><td>250</td><td>380</td><td>240</td><td>220</td><td>180</td></tr>
+<tr><td>Carmen</td><td>69</td><td>2900</td><td>650</td><td>520</td><td>320</td><td>170</td><td>140</td><td>130</td></tr>
+<tr><td>Ricardo</td><td>75</td><td>2600</td><td>640</td><td>580</td><td>300</td><td>130</td><td>100</td><td>120</td></tr>
+<tr><td>Patricia</td><td>66</td><td>3800</td><td>700</td><td>350</td><td>360</td><td>250</td><td>280</td><td>190</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h3>Pregunta 1</h3><p>¿Quién tiene el mayor ingreso mensual?</p><button class="btn" onclick="toggle('a41')">Respuesta</button><div class="answer" id="a41"><strong>Patricia: S/ 3,800.</strong> Se identifica ordenando de mayor a menor la columna Ingreso mensual.</div></div>
+<div class="card"><h3>Pregunta 2</h3><p>¿Quiénes tienen gastos de salud mayores a S/ 500?</p><button class="btn" onclick="toggle('a42')">Respuesta</button><div class="answer" id="a42">Carmen (S/ 520), Ricardo (S/ 580), Fernando (S/ 610) y Héctor (S/ 500 no entra si el criterio es estrictamente mayor).</div></div>
+<div class="card"><h3>Pregunta 3</h3><p>¿Qué herramientas usarías?</p><button class="btn" onclick="toggle('a43')">Respuesta</button><div class="answer" id="a43"><strong>Ordenar</strong> para rankings y <strong>Filtrar</strong> para mostrar únicamente registros que cumplen una condición.</div></div>
+</div>
+<div class="challenge"><h3>Mini caso del Excel</h3><p>La hoja muestra un ejemplo de Jorge: ingreso mensual S/ 3,500 y egresos de Alimentación S/ 720, Salud S/ 250, Servicios S/ 380, Transporte S/ 240, Recreación S/ 220 y Otros S/ 180.</p><p class="insight">Aquí Excel empieza a servir para interpretar una situación, no solo para almacenar datos.</p></div>
+<div class="controls"><button class="btn secondary" onclick="show(2)">← Anterior</button><button class="btn" onclick="show(4)">Siguiente →</button></div>
+</section>
+
+<section class="module">
+<div class="hero"><span class="tag">HOJA 5 · Visualización de la Información</span><h2>De la base de ventas al gráfico</h2>
+<p>Usamos los mismos clientes, distritos, productos, descuentos y totales de venta que aparecen en el archivo.</p></div>
+<div class="card"><h3>Muestra de ventas</h3>
+<table><tr><th>Cliente</th><th>Distrito</th><th>Producto</th><th>Categoría</th><th>Cant.</th><th>Precio</th><th>Desc.</th><th>Estado</th><th>Total Venta</th></tr>
+<tr><td>Ana Torres</td><td>Ancón</td><td>Laptop</td><td>Tecnología</td><td>1</td><td>2800</td><td>5%</td><td>Entregado</td><td>2660</td></tr>
+<tr><td>Luis Pérez</td><td>Santa Rosa</td><td>Mouse</td><td>Accesorios</td><td>2</td><td>80</td><td>0%</td><td>Entregado</td><td>160</td></tr>
+<tr><td>Rosa Díaz</td><td>Ventanilla</td><td>Monitor</td><td>Tecnología</td><td>1</td><td>950</td><td>10%</td><td>Pendiente</td><td>855</td></tr>
+<tr><td>Elena Vargas</td><td>Ancón</td><td>Silla Ergonómica</td><td>Oficina</td><td>2</td><td>620</td><td>8%</td><td>Pendiente</td><td>1140.80</td></tr>
+<tr><td>Andrea Salas</td><td>Ancón</td><td>Router</td><td>Redes</td><td>2</td><td>280</td><td>5%</td><td>Entregado</td><td>532</td></tr>
+<tr><td>Patricia Núñez</td><td>Ancón</td><td>Laptop</td><td>Tecnología</td><td>1</td><td>2950</td><td>10%</td><td>Entregado</td><td>2655</td></tr>
+<tr><td>Sonia Campos</td><td>Ancón</td><td>Webcam</td><td>Accesorios</td><td>2</td><td>180</td><td>0%</td><td>Entregado</td><td>360</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h3>Ejemplos que ya aparecen resumidos</h3><p><strong>Laptop:</strong> S/ 2,660 y S/ 2,655</p><p><strong>Silla Ergonómica:</strong> S/ 1,140.80</p><p><strong>Router:</strong> S/ 532</p><p><strong>Webcam:</strong> S/ 360</p></div>
+<div class="card"><h3>Qué enseñar</h3><p>1. Seleccionar la información.</p><p>2. Insertar gráfico de columnas.</p><p>3. Cambiar título.</p><p>4. Agregar etiquetas.</p><p>5. Interpretar qué categoría o producto destaca.</p></div>
+</div>
+<div class="challenge"><h3>Dato → gráfico → insight</h3><p><strong>Dato:</strong> una Laptop vendida por Ana Torres genera S/ 2,660.</p><p><strong>Gráfico:</strong> permite compararla rápidamente con Mouse, Router o Webcam.</p><p><strong>Insight:</strong> los productos de mayor precio explican una parte importante del valor vendido aun con pocas unidades.</p><button class="btn" onclick="toggle('r5')">Mensaje para cerrar</button><div class="answer" id="r5"><strong>El gráfico muestra el dato; el insight explica por qué ese dato importa.</strong></div></div>
+<div class="controls"><button class="btn secondary" onclick="show(3)">← Anterior</button><button class="btn" onclick="show(0)">Volver al inicio</button></div>
+</section>
+
+</main>
+<div class="timer" id="timer">Clase: 00:00</div>
+<script>
+let modules=[...document.querySelectorAll('.module')],buttons=[...document.querySelectorAll('nav button')];
+function show(i){modules.forEach((x,j)=>x.classList.toggle('active',j===i));buttons.forEach((x,j)=>x.classList.toggle('active',j===i));document.getElementById('bar').style.width=((i+1)/5*100)+'%';scrollTo({top:0,behavior:'smooth'})}
+function toggle(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block'}
+let s=0;setInterval(()=>{s++;let m=String(Math.floor(s/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0');document.getElementById('timer').textContent='Clase: '+m+':'+ss},1000)
+</script>
+</body>
+</html>
